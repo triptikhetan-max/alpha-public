@@ -21,107 +21,157 @@ It returns: the answer, who to contact, and the relevant Drive link. Backed by 1
 
 ## What you need before starting
 
-1. **A Mac** (these instructions are Mac-specific. Windows + Linux are also supported but talk to Tripti for setup help.)
+1. **A Mac or Windows computer** (instructions cover both — pick the right section as you go)
 2. **The two things Tripti DM'd you:**
    - `ALPHA_API_URL` — looks like `https://alpha-academic-api.vercel.app`
    - `ALPHA_API_KEY` — a long random string like `t_bT5n5KiNSsx9oWcsTC7yZryu8WVfLGB35YEhfTULI`
-3. **Claude Code installed** (we'll check below)
+3. **Claude Code installed** (we'll check in Step 2)
 
 You do NOT need:
 - A GitHub account
 - Any code experience
-- Any "developer tools"
+- Any "developer tools" beyond Claude Code
 
 ---
 
 ## Step 1 — Open Terminal
 
-1. Press **Cmd + Space** (this opens Spotlight, the little search bar that appears on screen)
+### 🍎 Mac
+1. Press **Cmd + Space** (this opens Spotlight, the little search bar)
 2. Type **`terminal`** and press **Enter**
+3. A black/white window opens with text and a `$` or `%` prompt. ✅
 
-A black/white window opens with text and a `$` or `%` prompt. That's Terminal. ✅
+### 🪟 Windows
+1. Press the **Windows key** (bottom-left of keyboard) **or** click the Start button
+2. Type **`terminal`** or **`powershell`** and press **Enter**
+3. A blue/black window opens with a `>` prompt. ✅
+4. *(If "Terminal" doesn't appear in your Start menu, install it free from the Microsoft Store: search "Windows Terminal" — only takes 30 seconds.)*
 
 ---
 
 ## Step 2 — Check if you have Claude Code already
 
-Copy this, paste into Terminal, press Enter:
+Copy this, paste into Terminal, press **Enter**:
 
-```bash
+```
 claude --version
 ```
 
-**Two possible outcomes:**
+**Two possible outcomes** (same on Mac and Windows):
 
-- ✅ It prints something like `Claude Code v2.1.97` → you have it. Skip to Step 4.
-- ❌ It says `command not found: claude` → keep going to Step 3.
+- ✅ It prints something like `Claude Code v2.1.97` → you have it. Skip to **Step 4**.
+- ❌ It says `command not found` (Mac) or `not recognized as the name of a cmdlet` (Windows) → keep going to **Step 3**.
 
 ---
 
 ## Step 3 — Install Claude Code (skip if Step 2 worked)
 
-Copy this, paste into Terminal, press Enter:
+### 🍎 Mac
 
-```bash
+Copy and paste, press Enter:
+
+```
 curl -fsSL https://claude.com/install.sh | bash
 ```
 
-Wait for it to finish (~1 min). Then **close Terminal completely** (Cmd+Q) and reopen it (Step 1 again). This makes the new `claude` command available.
+Wait ~1 min. **Close Terminal completely (Cmd + Q) and reopen** (Step 1 again). This makes the new `claude` command available.
 
-Verify with `claude --version` again. Should now print a version number.
+### 🪟 Windows
+
+You need **Node.js** first. Check by running:
+
+```
+node --version
+```
+
+- ✅ Prints a version like `v20.10.0` → you have it. Continue below.
+- ❌ Says "not recognized" → install Node.js from https://nodejs.org (pick the **LTS** version, run the installer, accept defaults). Then **close Terminal and reopen**.
+
+Once Node is installed, run:
+
+```
+npm install -g @anthropic-ai/claude-code
+```
+
+Wait ~2 min. **Close Terminal and reopen**.
+
+### Verify (both platforms)
+
+Run `claude --version` again. Should print a version number now. ✅
 
 ---
 
 ## Step 4 — Save your API key permanently
 
-Right now we're going to add your key to a file Terminal reads every time it opens, so you don't have to retype it.
+You need to set two environment variables that persist every time you open Terminal: `ALPHA_API_URL` and `ALPHA_API_KEY`.
 
-Copy these THREE lines, paste them into Terminal **all at once**, press Enter:
+### 🍎 Mac
 
-```bash
-echo '' >> ~/.zshrc
-echo '# Alpha Academic API' >> ~/.zshrc
-echo 'export ALPHA_API_URL="PASTE_URL_HERE"' >> ~/.zshrc
-echo 'export ALPHA_API_KEY="PASTE_KEY_HERE"' >> ~/.zshrc
+Open the shell config file in a simple editor:
+
 ```
-
-Now we have to replace the placeholders with your real values:
-
-```bash
 nano ~/.zshrc
 ```
 
-This opens an editor. Use arrow keys to scroll to the bottom. You'll see the lines you just added with `PASTE_URL_HERE` and `PASTE_KEY_HERE`.
+Use **arrow keys** to scroll to the bottom of the file. On a new line, type these three lines (replace the placeholder values with what Tripti DM'd you):
 
-Replace `PASTE_URL_HERE` with the URL Tripti gave you (e.g. `https://alpha-academic-api.vercel.app`).
-Replace `PASTE_KEY_HERE` with your API key (e.g. `t_bT5n5KiNSsx9oWcsTC7yZryu8WVfLGB35YEhfTULI`).
+```
+# Alpha Academic API
+export ALPHA_API_URL="https://alpha-academic-api.vercel.app"
+export ALPHA_API_KEY="paste-your-real-key-here"
+```
 
-When done:
-1. Press **Ctrl + O** (save) → press **Enter**
+Save and exit:
+1. Press **Ctrl + O** → press **Enter** (save)
 2. Press **Ctrl + X** (exit)
 
-Then reload the file:
+Reload the file:
 
-```bash
+```
 source ~/.zshrc
 ```
 
-Verify it worked:
+Verify both values are set:
 
-```bash
+```
 echo $ALPHA_API_URL
 echo $ALPHA_API_KEY
 ```
 
-Both should print your values (not `PASTE_..._HERE`). ✅
+Both should print real values. ✅
+
+### 🪟 Windows
+
+Run these two commands one at a time (replacing placeholders with your real values):
+
+```
+[Environment]::SetEnvironmentVariable("ALPHA_API_URL", "https://alpha-academic-api.vercel.app", "User")
+```
+
+```
+[Environment]::SetEnvironmentVariable("ALPHA_API_KEY", "paste-your-real-key-here", "User")
+```
+
+This stores them in your user profile, persistent across all future Terminal sessions.
+
+**Close Terminal completely and reopen** (Step 1) so it picks up the new variables.
+
+Verify both values are set:
+
+```
+echo $env:ALPHA_API_URL
+echo $env:ALPHA_API_KEY
+```
+
+Both should print real values. ✅
 
 ---
 
 ## Step 5 — Start Claude Code
 
-In Terminal, type:
+In Terminal (Mac or Windows), type:
 
-```bash
+```
 claude
 ```
 
@@ -199,27 +249,31 @@ Or just tell Tripti directly. She reviews feedback weekly and updates the brain.
 
 ## Troubleshooting
 
-### "command not found: claude"
+### "command not found: claude" (Mac) / "not recognized" (Windows)
 
 You need to install Claude Code (Step 3) and **fully close + reopen Terminal** afterwards.
 
-### "command not found: nano"
+### "command not found: nano" (Mac)
 
-Your Mac is unusual — try `vim ~/.zshrc` instead, or just open the file in TextEdit:
+Your Mac is unusual — try `vim ~/.zshrc` instead, or open the file in TextEdit:
 
-```bash
+```
 open -a TextEdit ~/.zshrc
 ```
 
-Edit there, save, close. Then `source ~/.zshrc` in Terminal.
+Edit, save, close. Then `source ~/.zshrc` in Terminal.
 
-### `echo $ALPHA_API_KEY` prints an empty line
+### `echo $ALPHA_API_KEY` (Mac) prints an empty line
 
-The `source ~/.zshrc` step didn't pick up the changes. Try **fully closing Terminal** (Cmd+Q) and reopening it (Step 1).
+The `source ~/.zshrc` step didn't pick up the changes. **Fully close Terminal (Cmd + Q) and reopen** (Step 1).
+
+### `echo $env:ALPHA_API_KEY` (Windows) prints an empty line
+
+You didn't fully close + reopen Terminal after running the `SetEnvironmentVariable` commands. New env vars need a fresh Terminal session.
 
 ### Plugin install fails with "Permission denied (publickey)"
 
-You're trying to install from GitHub via SSH but don't have keys set up. The public plugin install command is:
+You're trying to install via SSH but don't have keys set up. The public plugin install command is:
 
 ```
 /plugin marketplace add triptikhetan-max/alpha-public
@@ -231,16 +285,22 @@ You're trying to install from GitHub via SSH but don't have keys set up. The pub
 
 Your env vars aren't set. Re-do Step 4. Specifically check:
 
-```bash
-echo $ALPHA_API_URL
-echo $ALPHA_API_KEY
+```
+echo $ALPHA_API_URL          (Mac)
+echo $env:ALPHA_API_URL       (Windows)
 ```
 
-Both must print real values. If they print blanks, the `source ~/.zshrc` didn't run or the values didn't save in the file.
+Both must print real values. If they print blanks, the env vars didn't save or you need to restart Terminal.
 
 ### I keep getting "401 Unauthorized" when Claude calls the API
 
 Your API key is wrong, expired, or got revoked. DM Tripti for a fresh key.
+
+### My company laptop blocks installs / curl / npm
+
+Some IT setups block these. Two options:
+1. Ask your IT team to whitelist `claude.com`, `npmjs.com`, and `vercel.app`.
+2. Ask Tripti for a Slack-bot version (coming later) that doesn't need any install.
 
 ### Anything else
 
