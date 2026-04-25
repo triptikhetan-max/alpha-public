@@ -1,0 +1,25 @@
+{
+  "name": "alpha-public",
+  "owner": {
+    "name": "Alpha Schools Learning Design",
+    "email": "tripti.khetan@trilogy.com"
+  },
+  "metadata": {
+    "description": "Public-safe client for the Alpha Academic API. Teammates install this plugin + get an API key from Tripti to access the knowledge base.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "alpha-academic-remote",
+      "source": "./plugins/alpha-academic-remote",
+      "description": "Ask Alpha Schools academic questions by calling the private Alpha Academic API. No data bundled — everything served over HTTPS from the API. Requires ALPHA_API_KEY env var.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Tripti Khetan",
+        "email": "tripti.khetan@trilogy.com"
+      },
+      "keywords": ["alpha-schools", "academics", "dri", "remote", "api-client"],
+      "category": "internal"
+    }
+  ]
+}

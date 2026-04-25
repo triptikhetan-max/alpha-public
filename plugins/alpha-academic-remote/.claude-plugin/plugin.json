@@ -1,0 +1,11 @@
+{
+  "name": "alpha-academic-remote",
+  "description": "Ask Alpha Schools academic questions by calling the private Alpha Academic API. This plugin contains NO data — it's a thin client that calls https://<your-api>.railway.app with your API key, so teammates without GitHub access can install it publicly. Needs two env vars: ALPHA_API_URL (the API base URL) and ALPHA_API_KEY (issued by Tripti).",
+  "version": "0.1.0",
+  "author": {
+    "name": "Tripti Khetan",
+    "email": "tripti.khetan@trilogy.com"
+  },
+  "homepage": "https://github.com/triptikhetan-max/alpha-academic-api",
+  "license": "UNLICENSED"
+}
