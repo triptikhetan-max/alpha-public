@@ -104,7 +104,42 @@ If a matched document is a **playbook, runbook, manual, or guide** (filename hin
 
 > The user asks "how do I proctor a test?" → the Mastery Test Proctoring Playbook is matched with `has_content=true`. Parse the excerpt for numbered steps, before/during/after sections, rules, and present them as a skimmable checklist with emoji section headers (🔴 rules, ⏰ before, 🟢 during, 👀 observations, ✅ after).
 
-### Format for "what do I do if X" (procedural)
+### Rendering support articles (the 436 articles from `support.alpha.school`)
+
+If a matched document filename starts with a numeric ID like `123406-...md` or contains a line `[Source](https://support.alpha.school/article/<id>)`, it's a support article. **Always render in this 3-part format:**
+
+```
+📄 **<Article title>**
+🔗 https://support.alpha.school/article/<id>
+
+📝 **Summary** (1–2 sentences in your own words, distilled from the article body — not a quote)
+
+✅ **Quick reply — what to do**
+1. <First concrete step from the article's "Next steps" section>
+2. <Second step>
+3. <Third step>
+   …
+(Pull these from the numbered list under "Next steps" in the article. If the article has no Next-steps section, derive 2-3 actions from the body. Keep each step to one line.)
+
+ℹ️ **Why** (one line — the underlying reason from the Summary section, if present)
+```
+
+**Example.** User asks *"why is reading missing during bracketing?"* → article 123406 matches with `has_content=true`. Response:
+
+> 📄 **Why is Reading missing during bracketing?**
+> 🔗 https://support.alpha.school/article/123406
+>
+> 📝 **Summary**
+> When a Reading test identifies Knowledge Gaps under Language, the next Reading test pauses until the student finishes the Language KG lessons. This is intentional — Language skills are foundational for reading comprehension.
+>
+> ✅ **Quick reply — what to do**
+> 1. Open Dash → My Required Learning → Language section
+> 2. Complete all assigned Language Knowledge Gap lessons
+> 3. Dash will automatically assign the next Reading test once the KGs are done
+>
+> ℹ️ **Why:** Reading test → Language gap identified → Complete Language lessons → Next Reading test.
+
+### Format for "what do I do if X" (procedural — non-article cases)
 
 Combine matched policy + systemic-issue nodes into step-by-step actions:
 - Situation restate (one sentence)
