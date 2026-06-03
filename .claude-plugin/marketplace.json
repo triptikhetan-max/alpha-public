@@ -5,8 +5,8 @@
     "email": "tripti.khetan@trilogy.com"
   },
   "metadata": {
-    "description": "Public-safe client for the Alpha Academic API. Teammates install this plugin + get an API key from Tripti to access the knowledge base.",
-    "version": "0.1.0"
+    "description": "Public-safe Claude Code plugins from Tripti: the Alpha Academic API client (needs an API key) and the TimeBack/QTI platform reference (Ilma's, no key).",
+    "version": "0.2.0"
   },
   "plugins": [
     {
@@ -19,6 +19,20 @@
         "email": "tripti.khetan@trilogy.com"
       },
       "keywords": ["alpha-schools", "academics", "dri", "remote", "api-client"],
+      "category": "internal"
+    },
+    {
+      "name": "timeback",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ilmych/incept-timeback-plugin.git"
+      },
+      "description": "TimeBack / QTI platform reference (authored by Ilma — ilmych/incept-timeback-plugin, public, canonical). Prevents XML/QTI/rendering/API bugs when building TimeBack content; includes the read-side API references (OneRoster, PowerPath, EduBridge, QTI, Cognito auth). No API key.",
+      "author": {
+        "name": "Ilma",
+        "email": "ilma@incept.ai"
+      },
+      "keywords": ["timeback", "qti", "oneroster", "edtech", "assessment", "lms"],
       "category": "internal"
     }
   ]
