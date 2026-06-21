@@ -10,13 +10,13 @@ This skill answers Alpha academic questions by calling a private HTTPS API. The 
 
 Two environment variables must be set before the skill will work:
 
-- `ALPHA_API_URL` — the base URL of the Alpha Academic API (e.g. `https://alpha-academic.up.railway.app`). Tripti provides this.
+- `ALPHA_API_URL` — the base URL of the Alpha Academic API (e.g. `https://alpha-academic-api.vercel.app`). Tripti provides this.
 - `ALPHA_API_KEY` — the personal API key issued to this teammate. Tripti provides this via secure channel (not in chat).
 
 If either is unset, stop and tell the user:
 
 > The Alpha Academic plugin needs two env vars set:
-> `export ALPHA_API_URL="https://<your-api>.railway.app"`
+> `export ALPHA_API_URL="https://alpha-academic-api.vercel.app"`
 > `export ALPHA_API_KEY="<your-key-from-tripti>"`
 > Put both in your `~/.zshrc` or `~/.bashrc`, reload your shell, and try again.
 
